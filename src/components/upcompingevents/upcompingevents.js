@@ -29,20 +29,16 @@ export default function UpcomingEvents({
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  // Function to filter events based on the selected category
   const filterEventsByCategory = (selectedCategoryId) => {
     if (selectedCategoryId === "all" || !selectedCategoryId) {
-      // Show all events when "All" is selected
       return initialEvents;
     }
-    // Otherwise, filter events by category ID
     return initialEvents.filter((event) => event.category._id === selectedCategoryId);
   };
 
-  // Update the events whenever category changes
   useEffect(() => {
     setEvents(filterEventsByCategory(value));
-  }, [value, initialEvents]); // Run when 'value' or 'initialEvents' changes
+  }, [value, initialEvents]);
 
   const handleSelectCategory = (id) => {
     const params = new URLSearchParams(searchParams);
@@ -60,7 +56,7 @@ export default function UpcomingEvents({
     <div className="min-h-screen bg-background">
       <main className="container mx-auto py-12">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Upcoming Events</h2>
+          <h2 className="text-3xl font-bold">Upcoming Local Events</h2>
           <div className="flex gap-4">
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
@@ -108,7 +104,7 @@ export default function UpcomingEvents({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((event) => (
             <Card key={event._id} className="flex flex-col">
               <CardHeader>
@@ -142,9 +138,7 @@ export default function UpcomingEvents({
                   />
                   <span className="text-sm">{event.createby.fullname}</span>
                 </div>
-                {/* <Link href={`/event/${event._id}`}> */}
-                  <Button>View Details</Button>
-                {/* </Link> */}
+                <Button>View Details</Button>
               </CardFooter>
             </Card>
           ))}

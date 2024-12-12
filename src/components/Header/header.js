@@ -16,12 +16,12 @@ export default async function Header() {
   return (
     <div className="bg-primary">
       <div className="container py-3 mx-auto flex justify-between items-center">
-        <h1 className="font-mono text-2xl text-primary-foreground">LOGO</h1>
+        <h1 className="font-mono text-xl sm:text-2xl md:text-3xl text-primary-foreground">EventFinder</h1>
         {session ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
-                <AvatarImage src={session.user.image} alt="@shadcn" />
+                <AvatarImage src={session.user.image} alt="Profile" />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
@@ -39,11 +39,12 @@ export default async function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <Link href={"/signin"}>
-            <Button variant={"outline"}>Login</Button>
+          <Link href="/signin">
+            <Button variant="outline">Login</Button>
           </Link>
         )}
       </div>
     </div>
   );
 }
+
